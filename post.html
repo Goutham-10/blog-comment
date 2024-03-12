@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookworm's Blog</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <style>
+        /* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+header {
+    background: linear-gradient(135deg, #4e8264, #365a46); /* Shades of green */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header h1 span {
+    color: #ffd700; /* Golden yellow */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Golden yellow */
+}
+
+main {
+    padding: 20px;
+}
+
+section#post {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section#post h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+section#post .view-count {
+    color: #777;
+    margin-bottom: 10px;
+}
+
+section#post article p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+section#post .actions {
+    margin-top: 20px;
+}
+
+section#post .actions button {
+    padding: 10px 20px;
+    background-color: #4e8264; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+section#post .actions button:hover {
+    background-color: #365a46; /* Darker green on hover */
+}
+
+#commentInput {
+    width: 100%;
+    height: 150px; /* Larger comment box */
+    margin-bottom: 10px;
+}
+
+#submitCommentBtn {
+    padding: 10px 20px;
+    background-color: #4e8264; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#submitCommentBtn:hover {
+    background-color: #365a46; /* Darker green on hover */
+}
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Welcome to <span>Bookworm's Blog</span></h1>
+        <nav>
+            <ul>
+                <li><a href="#news">News</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="post">
+            <h2>Book Review: "To Kill a Mockingbird" by Harper Lee</h2>
+            <p class="view-count">Views: <span id="viewCount">150</span></p>
+            <article>
+                <p>"To Kill a Mockingbird" by Harper Lee is a timeless masterpiece that explores themes of racial injustice, moral growth, and compassion in the American South during the 1930s. Narrated by Scout Finch, a young girl growing up in the fictional town of Maycomb, Alabama, the novel follows her father, Atticus Finch, a lawyer who defends a black man accused of raping a white woman.</p>
+            </article>
+            <div class="actions">
+                <button id="likeBtn">Like</button>
+                <button id="shareBtn">Share</button>
+                <button id="commentBtn">Comment</button>
+            </div>
+            <div id="commentBox">
+                <h3>Comments</h3>
+                <ul id="commentList">
+                    <!-- Comments will be dynamically added here -->
+                </ul>
+                <textarea id="commentInput" placeholder="Leave a comment"></textarea>
+                <button id="submitCommentBtn">Submit</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Bookworm's Blog</p>
+    </footer>
+
+    <script>
+        // Get references to elements
+const viewCountElement = document.getElementById("viewCount");
+const likeBtn = document.getElementById("likeBtn");
+const commentBtn = document.getElementById("commentBtn");
+const shareBtn = document.getElementById("shareBtn");
+const commentInput = document.getElementById("commentInput");
+const commentList = document.getElementById("commentList");
+const submitCommentBtn = document.getElementById("submitCommentBtn");
+
+// Initialize view count
+let viewCount = 150; // Example initial view count
+
+// Function to update view count
+function updateViewCount() {
+    viewCount++;
+    viewCountElement.textContent = viewCount;
+}
+
+// Event listeners
+likeBtn.addEventListener("click", likePost);
+commentBtn.addEventListener("click", toggleCommentBox);
+submitCommentBtn.addEventListener("click", submitComment);
+
+// Functions
+function likePost() {
+    // Increment view count
+    updateViewCount();
+    // Implement like functionality here
+    // For example, you can change the button color or increment a like count
+    alert("Liked!");
+}
+
+function toggleCommentBox() {
+    const commentBox = document.getElementById("commentBox");
+    commentBox.classList.toggle("show");
+}
+
+function submitComment() {
+    const commentText = commentInput.value.trim();
+    if (commentText !== "") {
+        const commentItem = document.createElement("li");
+        commentItem.textContent = commentText;
+        commentList.appendChild(commentItem);
+        commentInput.value = "";
+    } else {
+        alert("Please enter a comment.");
+    }
+}
+
+// Initial view count update
+updateViewCount();
+
+    </script>
+</body>
+</html>
